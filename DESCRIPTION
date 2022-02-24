@@ -1,11 +1,10 @@
 Package: mediacomRPlots
 Type: Package
-Title: What the Package Does (Title Case)
+Title: MediaCom theme to use with ggplot2
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Ethan Beal
+Maintainer: Ethan Beal <ethan.beal@mediacom.com>
+Description: Allows you to 'Mediacomify' plots when using ggplot2 in R. Can use a Mediacom palette and  theme to easily make good looking plots. 
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
@@ -14,3 +13,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: 
+    ggplot2

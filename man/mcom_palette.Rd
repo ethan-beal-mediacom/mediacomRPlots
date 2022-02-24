@@ -15,8 +15,8 @@ Function to provide a standard MediaCom colour palette
 \examples{
 mcom_palette()
 
-ggplot(data=mtcars[1:5,], aes(x=rownames(mtcars)[1:5], y=mpg, fill=rownames(mtcars)[1:5])) +
-geom_col() +
-scale_fill_manual(values = mcom_palette()) +
-mcom_ggplot(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source")
+ggplot2::ggplot(data=mtcars[1:5,], ggplot2::aes(x=rownames(mtcars)[1:5], y=mpg, fill=rownames(mtcars)[1:5])) +
+  ggplot2::geom_col() +
+  ggplot2::scale_fill_manual(values = mcom_palette()) +
+  mcom_ggplot(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source")
 }

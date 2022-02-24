@@ -6,11 +6,15 @@
 #' @param source Data source to display in bottom right
 #' @return \code{list} of ggplot2 formatting options
 #' @examples
-#'ggplot2::ggplot(data=mtcars, aes(x=disp, y=mpg)) +
-#'  geom_line(colour = mcom_signature_Pink()) +
+#'ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg)) +
+#'  ggplot2::geom_line(colour = mcom_signature_Pink()) +
 #'  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source")
 #' @export
-theme_mcom <- function(title = element_blank(), subtitle = element_blank(), xtitle = element_blank(), ytitle = element_blank(), source = "MediaCom"){
+theme_mcom <- function(title = element_blank(),
+                       subtitle = element_blank(),
+                       xtitle = element_blank(),
+                       ytitle = element_blank(),
+                       source = "MediaCom"){
 
   formatting <- list(
     ggplot2::ggtitle(title, subtitle),

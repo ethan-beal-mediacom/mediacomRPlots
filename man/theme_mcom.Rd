@@ -30,7 +30,7 @@ theme_mcom(
 Re-skins a ggplot2 chart with MediaCom titles and axes
 }
 \examples{
-ggplot2::ggplot(data=mtcars, aes(x=disp, y=mpg)) +
- geom_line(colour = mcom_signature_Pink()) +
+ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg)) +
+ ggplot2::geom_line(colour = mcom_signature_Pink()) +
  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source")
 }
