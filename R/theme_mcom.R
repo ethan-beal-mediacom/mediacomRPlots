@@ -15,26 +15,26 @@ theme_mcom <- function(title = element_blank(), subtitle = element_blank(), xtit
   formatting <- list(
     ggplot2::ggtitle(title, subtitle),
 
-    labs(x = xtitle,
+    ggplot2::labs(x = xtitle,
          y = ytitle,
          caption = paste0("source: ", source)),
 
     ggplot2::theme(
-      panel.background = element_blank(),
+      panel.background = ggplot2::element_blank(),
       legend.position = "top",
-      legend.title = element_blank(),
+      legend.title = ggplot2::element_blank(),
       legend.justification = "left",
-      legend.key.size = unit(2, "cm"),
-      legend.key=element_blank(),
-      legend.background=element_blank(),
-      plot.subtitle =  element_text(margin = margin(0,0,20,0)),
-      axis.title = element_text(hjust = 0.5),
-      axis.ticks = element_blank(),
-      text = element_text(colour = mcom_space_gray()),
-      axis.text = element_text(colour =mcom_space_gray()),
-      axis.title.x = element_text(margin = margin(10,0,0,0), size = 9),
-      axis.title.y = element_text(margin = margin(0,10,0,0), size = 9),
-      plot.caption = element_text(margin = margin(10,0,0,0), colour = mcom_dove_gray(), size = 8)
+      legend.key.size = ggplot2::unit(2, "cm"),
+      legend.key= ggplot2::element_blank(),
+      legend.background= ggplot2::element_blank(),
+      plot.subtitle =  ggplot2::element_text(margin = ggplot2::margin(0,0,20,0)),
+      axis.title = ggplot2::element_text(hjust = 0.5),
+      axis.ticks = ggplot2::element_blank(),
+      text = ggplot2::element_text(colour = mcom_space_gray()),
+      axis.text = ggplot2::element_text(colour = mcom_space_gray()),
+      axis.title.x = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), size = 9),
+      axis.title.y = ggplot2::element_text(margin = ggplot2::margin(0,10,0,0), size = 9),
+      plot.caption = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), colour = mcom_dove_gray(), size = 8)
     )
   )
 
