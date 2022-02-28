@@ -9,7 +9,10 @@ theme_mcom(
   subtitle = element_blank(),
   xtitle = element_blank(),
   ytitle = element_blank(),
-  source = "MediaCom"
+  source = "MediaCom",
+  legend = "yes",
+  palette_len = 3,
+  palette_name = "orignal"
 )
 }
 \arguments{
@@ -30,7 +33,20 @@ theme_mcom(
 Re-skins a ggplot2 chart with MediaCom titles and axes
 }
 \examples{
-ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg)) +
- ggplot2::geom_line(colour = mcom_signature_Pink()) +
+
+# basic scatter plot
+ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(gear))) +
+ ggplot2::geom_point() +
  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source")
+
+# change palette with palette, and change palette length with palette_len
+ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(carb))) +
+ ggplot2::geom_point() +
+ theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source", palette_name = "secondary", palette_len = 6)
+
+# remove axis with legend = "no"
+ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(gear))) +
+ ggplot2::geom_point() +
+ theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source", legend = "no")
+
 }

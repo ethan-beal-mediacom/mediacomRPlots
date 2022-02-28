@@ -4,28 +4,52 @@
 #' @param xtitle X axis label
 #' @param ytitle Y axis label
 #' @param source Data source to display in bottom right
+#' @param legend A character. Do you want a legend displayed ["yes"] or ["no"]
+#' @param palette_len numeric. Change to same length as colour or fill
+#' @param palette_name A character. Which palette woould you like to use. default is ["original"],
+#' can also choose from ["primary"] or ["secondary"]
 #' @return \code{list} of ggplot2 formatting options
 #' @examples
-#'ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg)) +
-#'  ggplot2::geom_line(colour = mcom_signature_Pink()) +
+#'
+#' # basic scatter plot
+#' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(gear))) +
+#'  ggplot2::geom_point() +
 #'  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source")
+#'
+#' # change palette with palette, and change palette length with palette_len
+#' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(carb))) +
+#'  ggplot2::geom_point() +
+#'  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source", palette_name = "secondary", palette_len = 6)
+#'
+#' # remove axis with legend = "no"
+#' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(gear))) +
+#'  ggplot2::geom_point() +
+#'  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source", legend = "no")
+#'
 #' @export
 theme_mcom <- function(title = element_blank(),
                        subtitle = element_blank(),
                        xtitle = element_blank(),
                        ytitle = element_blank(),
-                       source = "MediaCom"){
+                       source = "MediaCom",
+                       legend = "yes",
+                       palette_len = 3,
+                       palette_name = "orignal"){
 
   formatting <- list(
+
+    # title
     ggplot2::ggtitle(title, subtitle),
 
+    # labs
     ggplot2::labs(x = xtitle,
          y = ytitle,
          caption = paste0("source: ", source)),
 
+    # theme
     ggplot2::theme(
       panel.background = ggplot2::element_blank(),
-      legend.position = "top",
+      legend.position = ifelse(legend == "no", "none", "top"),
       legend.title = ggplot2::element_blank(),
       legend.justification = "left",
       legend.key.size = ggplot2::unit(2, "cm"),
@@ -38,7 +62,18 @@ theme_mcom <- function(title = element_blank(),
       axis.text = ggplot2::element_text(colour = mcom_space_gray()),
       axis.title.x = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), size = 9),
       axis.title.y = ggplot2::element_text(margin = ggplot2::margin(0,10,0,0), size = 9),
-      plot.caption = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), colour = mcom_dove_gray(), size = 8)
+      plot.caption = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), colour = mcom_dove_gray(), size = 8),
+
+
+    # colour palettes
+    ggplot2::scale_fill_manual(values=if(palette_name == "primary"){c(mcom_palette_primary()[1:palette_len])}
+                               else if (palette_name == "secondary"){c(mcom_palette_secondary()[1:palette_len])}
+                               else {c(mcom_palette()[1:palette_len])}),
+
+
+    ggplot2::scale_colour_manual(values=if(palette_name == "primary"){c(mcom_palette_primary()[1:palette_len])}
+                                 else if (palette_name == "secondary"){c(mcom_palette_secondary()[1:palette_len])}
+                                 else {c(mcom_palette()[1:palette_len])})
     )
   )
 

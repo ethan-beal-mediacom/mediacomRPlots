@@ -50,6 +50,14 @@ mcom_palette <- function(){
   )
 }
 
+#' Function to provide a standard MediaCom colour palette - primary colours
+#' @return \code{vector} of hex codes
+#' @examples
+#' mcom_palette_primary()
+#'
+#' ggplot2::ggplot(data=mtcars[1:5,], ggplot2::aes(x=rownames(mtcars)[1:5], y=mpg, fill=rownames(mtcars)[1:5])) +
+#'   ggplot2::geom_col() +
+#'   ggplot2::scale_fill_manual(values = mcom_palette_primary())
 #' @export
 mcom_palette_primary <- function(){
   c(
@@ -62,7 +70,14 @@ mcom_palette_primary <- function(){
   )
 }
 
-
+#' Function to provide a standard MediaCom colour palette - secondary colours
+#' @return \code{vector} of hex codes
+#' @examples
+#' mcom_palette_secondary()
+#'
+#' ggplot2::ggplot(data=mtcars[1:5,], ggplot2::aes(x=rownames(mtcars)[1:5], y=mpg, fill=rownames(mtcars)[1:5])) +
+#'   ggplot2::geom_col() +
+#'   ggplot2::scale_fill_manual(values = mcom_palette_secondary())
 #' @export
 mcom_palette_secondary <- function(){
   c(
