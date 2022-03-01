@@ -1,92 +1,119 @@
-# primary colours
-#' @export
-mcom_signature_Pink <- function(){"#E1005D"}
-#' @export
-mcom_white <- function(){"#FFFFFF"}
-#' @export
-mcom_dove_gray <- function(){"#EDF2F4"}
-#' @export
-mcom_space_gray <- function(){"#404E5C"}
-#' @export
-mcom_midnight <- function(){"#011627"}
-#' @export
-mcom_teal <- function(){"#3FCBB6"}
-
-# secondary colours
-#' @export
-mcom_orange <- function(){"#FF9914"}
-#' @export
-mcom_grape <- function(){"#8C035C"}
-#' @export
-mcom_light_pink <- function(){"#F291BF"}
-#' @export
-mcom_green <- function(){"#9AD348"}
-#' @export
-mcom_blue <- function(){"#2AB0BF"}
-#' @export
-mcom_purple <- function(){"#A06EBA"}
-
-
-
-#' Function to provide a standard MediaCom colour palette
-#' @return \code{vector} of hex codes
-#' @examples
-#' mcom_palette()
+#' Function to extract Mediacom colors as hex codes
 #'
-#' ggplot2::ggplot(data=mtcars[1:5,], ggplot2::aes(x=rownames(mtcars)[1:5], y=mpg, fill=rownames(mtcars)[1:5])) +
-#'   ggplot2::geom_col() +
-#'   ggplot2::scale_fill_manual(values = mcom_palette())
+#' @param ... Character names of mcom_colors
+#'
+#' @examples
+#' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg)) +
+#'   ggplot2::geom_point(colour = mcom_cols("signature pink"))
+#'
 #' @export
-mcom_palette <- function(){
-  c(
-    mcom_signature_Pink(),
-    mcom_teal(),
-    mcom_orange(),
-    mcom_grape(),
-    mcom_light_pink(),
-    mcom_blue(),
-    mcom_purple(),
-    mcom_green()
-  )
+mcom_cols <- function(...) {
+
+  mcom_colors <- c(
+    `signature pink` = "#E1005D",
+    `white`      = "#FFFFFF",
+    `dove gray`       = "#EDF2F4",
+    `space gray`     = "#404E5C",
+    `midnight`     = "#011627",
+    `teal` = "#3FCBB6",
+    `orange`  = "#FF9914",
+    `grape` = "#8C035C",
+    `light pink` = "#F291BF",
+    `green` = "#9AD348",
+    `blue` = "#2AB0BF",
+    `purple` = "#A06EBA")
+
+  cols <- c(...)
+
+  if (is.null(cols))
+    return (mcom_colors)
+
+  mcom_colors[cols]
 }
 
-#' Function to provide a standard MediaCom colour palette - primary colours
-#' @return \code{vector} of hex codes
-#' @examples
-#' mcom_palette_primary()
+
+#' Return colour list to interpolate a mediacom color palette
 #'
-#' ggplot2::ggplot(data=mtcars[1:5,], ggplot2::aes(x=rownames(mtcars)[1:5], y=mpg, fill=rownames(mtcars)[1:5])) +
-#'   ggplot2::geom_col() +
-#'   ggplot2::scale_fill_manual(values = mcom_palette_primary())
+#' @param palette Character name of palette in mcom_palettes
+#' @param reverse Boolean indicating whether the palette should be reversed
+#' @param n Numeric value indicating number of colours. To use whole palette
+#'          input the number of colours in palette. If n > number of colours
+#'          in palette then more colours are interpolated.
+#' @param ... Additional arguments to pass to colorRampPalette()
+#' @return \code{list} of hex codes
+#'
+#' @examples
+#' mcom_pal("secondary", n = 3) # get first 3 cols in palette
+#' mcom_pal("secondary", n = 6) # get all cols
+#' mcom_pal("secondary", n = 8) #interpolate more cols than palette
+#'
+#' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour=as.factor(cyl))) +
+#'   ggplot2::geom_point() +
+#'   ggplot2::scale_colour_manual(values=mcom_pal())
+#'
 #' @export
-mcom_palette_primary <- function(){
-  c(
-    mcom_signature_Pink(),
-    mcom_white(),
-    mcom_dove_gray(),
-    mcom_space_gray(),
-    mcom_midnight(),
-    mcom_teal()
-  )
+mcom_pal <- function(palette = "main", n = 3, reverse = FALSE, ...) {
+
+  mcom_palettes <- list(
+    `main`  = mcom_cols("signature pink", "teal", "orange"),
+    `secondary` = mcom_cols("orange", "grape", "light pink", "green", "blue", "purple"),
+    `grays` = mcom_cols("dove gray", "space gray", "midnight"),
+    `large` = mcom_cols("signature pink", "teal", "orange", "grape", "light pink", "green", "purple", "blue")
+    )
+
+  pal <- mcom_palettes[[palette]]
+
+  if (reverse) pal <- rev(pal)
+
+  if (n > length(pal)){ grDevices::colorRampPalette(pal, ...)(n)
+  } else { unname(pal) }
+
+
 }
 
-#' Function to provide a standard MediaCom colour palette - secondary colours
-#' @return \code{vector} of hex codes
-#' @examples
-#' mcom_palette_secondary()
+
+#' Return function or colour list to interpolate a mediacom color palette
+#' For us in scale_fill_mcom or scale_colour_mcom
 #'
-#' ggplot2::ggplot(data=mtcars[1:5,], ggplot2::aes(x=rownames(mtcars)[1:5], y=mpg, fill=rownames(mtcars)[1:5])) +
-#'   ggplot2::geom_col() +
-#'   ggplot2::scale_fill_manual(values = mcom_palette_secondary())
+#' @param palette Character name of palette in mcom_palettes
+#' @param reverse Boolean indicating whether the palette should be reversed
+#' @param ... Additional arguments to pass to colorRampPalette()
+#' @param n Numeric value indicating number of colours. To use whole palette
+#'          input the number of colours in palette. If n > number of colours
+#'          in palette then more colours are interpolated.
+#' @return \code{list} of hex codes or
+#'         \code{function}
+#'
+#' @examples
+#' mcom_pal_for_scale("secondary", n = 3) # get first 3 cols in palette
+#' mcom_pal_for_scale("secondary", n = 6) # get all cols
+#' mcom_pal_for_scale("secondary", n = 8)(8) #interpolate more cols than palette
+#'
+#' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg,
+#'                                           colour=as.factor(cyl))) +
+#'   ggplot2::geom_point() +
+#'   ggplot2::scale_colour_manual(values=mcom_pal())
+#'
 #' @export
-mcom_palette_secondary <- function(){
-  c(
-    mcom_orange(),
-    mcom_grape(),
-    mcom_light_pink(),
-    mcom_green(),
-    mcom_blue(),
-    mcom_purple()
+mcom_pal_for_scale <- function(palette = "main", n = 3, reverse = FALSE, ...) {
+
+  mcom_palettes <- list(
+    `main`  = mcom_cols("signature pink", "teal", "orange"),
+    `secondary` = mcom_cols("orange", "grape", "light pink", "green", "blue", "purple"),
+    `grays` = mcom_cols("dove gray", "space gray", "midnight"),
+    `large` = mcom_cols("signature pink", "teal", "orange", "grape", "light pink", "green", "purple", "blue")
   )
+
+  pal <- mcom_palettes[[palette]]
+
+  if (reverse) pal <- rev(pal)
+
+  if (n > length(pal)){ grDevices::colorRampPalette(pal, ...)
+  } else { unname(pal) }
+
+
 }
+
+
+
 

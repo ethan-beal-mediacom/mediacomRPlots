@@ -27,10 +27,10 @@
 #'  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source", legend = "no")
 #'
 #' @export
-theme_mcom <- function(title = element_blank(),
-                       subtitle = element_blank(),
-                       xtitle = element_blank(),
-                       ytitle = element_blank(),
+theme_mcom <- function(title = ggplot2::element_blank(),
+                       subtitle = ggplot2::element_blank(),
+                       xtitle = ggplot2::element_blank(),
+                       ytitle = ggplot2::element_blank(),
                        source = "MediaCom",
                        legend = "yes",
                        palette_len = 3,
@@ -58,22 +58,12 @@ theme_mcom <- function(title = element_blank(),
       plot.subtitle =  ggplot2::element_text(margin = ggplot2::margin(0,0,20,0)),
       axis.title = ggplot2::element_text(hjust = 0.5),
       axis.ticks = ggplot2::element_blank(),
-      text = ggplot2::element_text(colour = mcom_space_gray()),
-      axis.text = ggplot2::element_text(colour = mcom_space_gray()),
+      text = ggplot2::element_text(colour = mcom_cols("space gray")),
+      axis.text = ggplot2::element_text(colour = mcom_cols("space gray")),
       axis.title.x = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), size = 9),
       axis.title.y = ggplot2::element_text(margin = ggplot2::margin(0,10,0,0), size = 9),
-      plot.caption = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), colour = mcom_dove_gray(), size = 8),
+      plot.caption = ggplot2::element_text(margin = ggplot2::margin(10,0,0,0), colour =mcom_cols("dove gray"), size = 8),
 
-
-    # colour palettes
-    ggplot2::scale_fill_manual(values=if(palette_name == "primary"){c(mcom_palette_primary()[1:palette_len])}
-                               else if (palette_name == "secondary"){c(mcom_palette_secondary()[1:palette_len])}
-                               else {c(mcom_palette()[1:palette_len])}),
-
-
-    ggplot2::scale_colour_manual(values=if(palette_name == "primary"){c(mcom_palette_primary()[1:palette_len])}
-                                 else if (palette_name == "secondary"){c(mcom_palette_secondary()[1:palette_len])}
-                                 else {c(mcom_palette()[1:palette_len])})
     )
   )
 

@@ -5,10 +5,10 @@
 \title{Re-skins a ggplot2 chart with MediaCom titles and axes}
 \usage{
 theme_mcom(
-  title = element_blank(),
-  subtitle = element_blank(),
-  xtitle = element_blank(),
-  ytitle = element_blank(),
+  title = ggplot2::element_blank(),
+  subtitle = ggplot2::element_blank(),
+  xtitle = ggplot2::element_blank(),
+  ytitle = ggplot2::element_blank(),
   source = "MediaCom",
   legend = "yes",
   palette_len = 3,
@@ -25,6 +25,13 @@ theme_mcom(
 \item{ytitle}{Y axis label}
 
 \item{source}{Data source to display in bottom right}
+
+\item{legend}{A character. Do you want a legend displayed ["yes"] or ["no"]}
+
+\item{palette_len}{numeric. Change to same length as colour or fill}
+
+\item{palette_name}{A character. Which palette woould you like to use. default is ["original"],
+can also choose from ["primary"] or ["secondary"]}
 }
 \value{
 \code{list} of ggplot2 formatting options
