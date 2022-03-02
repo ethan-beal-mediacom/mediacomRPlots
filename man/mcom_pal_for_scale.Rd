@@ -5,7 +5,12 @@
 \title{Return function or colour list to interpolate a mediacom color palette
 For us in scale_fill_mcom or scale_colour_mcom}
 \usage{
-mcom_pal_for_scale(palette = "main", n = 3, reverse = FALSE, ...)
+mcom_pal_for_scale(
+  palette = "main",
+  n = pal_len(palette),
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{palette}{Character name of palette in mcom_palettes}

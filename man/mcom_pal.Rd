@@ -4,7 +4,7 @@
 \alias{mcom_pal}
 \title{Return colour list to interpolate a mediacom color palette}
 \usage{
-mcom_pal(palette = "main", n = 3, reverse = FALSE, ...)
+mcom_pal(palette = "main", n = pal_len(palette), reverse = FALSE, ...)
 }
 \arguments{
 \item{palette}{Character name of palette in mcom_palettes}

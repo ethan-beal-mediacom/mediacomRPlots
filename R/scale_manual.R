@@ -18,7 +18,7 @@
 #'# with a continuos scale
 #' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = wt)) +
 #'   ggplot2::geom_point() +
-#'   scale_color_mcom(discrete = F)
+#'   scale_color_mcom(discrete = FALSE)
 #'
 #' @export
 scale_color_mcom <- function(palette = "main", n = pal_len(palette), discrete = TRUE, reverse = FALSE, ...) {

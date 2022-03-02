@@ -73,7 +73,7 @@ pal_len <- function(palette){
 #'   ggplot2::scale_colour_manual(values=mcom_pal())
 #'
 #' @export
-mcom_pal <- function(palette = "main", n = 3, reverse = FALSE, ...) {
+mcom_pal <- function(palette = "main", n = pal_len(palette), reverse = FALSE, ...) {
 
   mcom_palettes <- list(
     `main`  = mcom_cols("signature pink", "teal", "orange"),
@@ -117,7 +117,7 @@ mcom_pal <- function(palette = "main", n = 3, reverse = FALSE, ...) {
 #'
 #' @export
 
-mcom_pal_for_scale <- function(palette = "main", n = 3, reverse = FALSE, ...) {
+mcom_pal_for_scale <- function(palette = "main", n = pal_len(palette), reverse = FALSE, ...) {
 
   mcom_palettes <- list(
     `main`  = mcom_cols("signature pink", "teal", "orange"),

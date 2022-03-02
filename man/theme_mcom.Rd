@@ -11,8 +11,9 @@ theme_mcom(
   ytitle = ggplot2::element_blank(),
   source = "MediaCom",
   legend = "yes",
-  palette_len = 3,
-  palette_name = "orignal"
+  palette = "none",
+  palette_length = pal_len(palette),
+  scale_discrete = TRUE
 )
 }
 \arguments{
@@ -28,10 +29,12 @@ theme_mcom(
 
 \item{legend}{A character. Do you want a legend displayed ["yes"] or ["no"]}
 
-\item{palette_len}{numeric. Change to same length as colour or fill}
+\item{palette}{A character. Which palette would you like to use. default is
+["none"], so to add a mediacom palette add either ["main"] ,
+["large"] , ["secondary"] or ["grays"].}
 
-\item{palette_name}{A character. Which palette woould you like to use. default is ["original"],
-can also choose from ["primary"] or ["secondary"]}
+\item{palette_len}{numeric. Change if you want to use more or less colours
+than the number in the palette.}
 }
 \value{
 \code{list} of ggplot2 formatting options
@@ -42,18 +45,20 @@ Re-skins a ggplot2 chart with MediaCom titles and axes
 \examples{
 
 # basic scatter plot
-ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(gear))) +
+ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(cyl))) +
  ggplot2::geom_point() +
  theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source")
 
-# change palette with palette, and change palette length with palette_len
-ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(carb))) +
+# change palette with palette, and change palette length with palette_length
+ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(cyl))) +
  ggplot2::geom_point() +
- theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source", palette_name = "secondary", palette_len = 6)
+ theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis",
+            source = "My Source", palette_name = "secondary", palette_len = 3)
 
 # remove axis with legend = "no"
 ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = as.factor(gear))) +
  ggplot2::geom_point() +
- theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis", ytitle = "Y Axis", source = "My Source", legend = "no")
+ theme_mcom(title = "My Chart", subtitle = "My Subtitle", xtitle = "X Axis",
+            ytitle = "Y Axis", source = "My Source", legend = "no")
 
 }

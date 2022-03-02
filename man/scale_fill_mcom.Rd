@@ -4,7 +4,13 @@
 \alias{scale_fill_mcom}
 \title{Fill scale constructor for Mediacom colors}
 \usage{
-scale_fill_mcom(palette = "main", n = 3, discrete = TRUE, reverse = FALSE, ...)
+scale_fill_mcom(
+  palette = "main",
+  n = pal_len(palette),
+  discrete = TRUE,
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{palette}{Character name of palette}

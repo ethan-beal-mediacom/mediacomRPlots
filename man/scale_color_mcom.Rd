@@ -6,7 +6,7 @@
 \usage{
 scale_color_mcom(
   palette = "main",
-  n = 3,
+  n = pal_len(palette),
   discrete = TRUE,
   reverse = FALSE,
   ...
@@ -32,5 +32,10 @@ ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg,
   # n needs to be the same as number of groups colouring by
   scale_color_mcom(palette = "secondary", n = 6) +
   theme_mcom()
+
+# with a continuos scale
+ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = wt)) +
+  ggplot2::geom_point() +
+  scale_color_mcom(discrete = F)
 
 }
