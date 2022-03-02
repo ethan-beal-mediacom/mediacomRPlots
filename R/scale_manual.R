@@ -15,8 +15,13 @@
 #'   scale_color_mcom(palette = "secondary", n = 6) +
 #'   theme_mcom()
 #'
+#'# with a continuos scale
+#' ggplot2::ggplot(data=mtcars, ggplot2::aes(x=disp, y=mpg, colour = wt)) +
+#'   ggplot2::geom_point() +
+#'   scale_color_mcom(discrete = F)
+#'
 #' @export
-scale_color_mcom <- function(palette = "main", n = 3, discrete = TRUE, reverse = FALSE, ...) {
+scale_color_mcom <- function(palette = "main", n = pal_len(palette), discrete = TRUE, reverse = FALSE, ...) {
   pal <- mcom_pal_for_scale(palette = palette, reverse = reverse, n = n)
 
   if (discrete) {
@@ -50,7 +55,7 @@ scale_color_mcom <- function(palette = "main", n = 3, discrete = TRUE, reverse =
 #'   theme_mcom()
 
 #' @export
-scale_fill_mcom <- function(palette = "main", n = 3, discrete = TRUE, reverse = FALSE, ...) {
+scale_fill_mcom <- function(palette = "main", n = pal_len(palette), discrete = TRUE, reverse = FALSE, ...) {
   pal <- mcom_pal_for_scale(palette = palette, reverse = reverse, n = n)
 
   if (discrete) {

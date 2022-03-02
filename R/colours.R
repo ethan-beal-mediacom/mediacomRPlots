@@ -31,6 +31,27 @@ mcom_cols <- function(...) {
   mcom_colors[cols]
 }
 
+#' Return length of given palette
+#'
+#' @param palette Character name of palette in mcom_palettes
+#' @return \code{numeric} number of colours in palette
+#'
+#' @examples
+#' pal_len("main")
+#'
+#' @export
+pal_len <- function(palette){
+  mcom_palettes <- list(
+    `main`  = mcom_cols("signature pink", "teal", "orange"),
+    `secondary` = mcom_cols("orange", "grape", "light pink", "green", "blue", "purple"),
+    `grays` = mcom_cols("dove gray", "space gray", "midnight"),
+    `large` = mcom_cols("signature pink", "teal", "orange", "grape", "light pink", "green", "purple", "blue")
+  )
+  length(mcom_palettes[[palette]])
+}
+
+
+
 
 #' Return colour list to interpolate a mediacom color palette
 #'
@@ -65,8 +86,8 @@ mcom_pal <- function(palette = "main", n = 3, reverse = FALSE, ...) {
 
   if (reverse) pal <- rev(pal)
 
-  if (n > length(pal)){ grDevices::colorRampPalette(pal, ...)(n)
-  } else { unname(pal) }
+  if (n > pal_len(palette)){ grDevices::colorRampPalette(pal, ...)(n)
+  } else { unname(pal)[1:n] }
 
 
 }
@@ -95,6 +116,7 @@ mcom_pal <- function(palette = "main", n = 3, reverse = FALSE, ...) {
 #'   ggplot2::scale_colour_manual(values=mcom_pal())
 #'
 #' @export
+
 mcom_pal_for_scale <- function(palette = "main", n = 3, reverse = FALSE, ...) {
 
   mcom_palettes <- list(
@@ -108,7 +130,7 @@ mcom_pal_for_scale <- function(palette = "main", n = 3, reverse = FALSE, ...) {
 
   if (reverse) pal <- rev(pal)
 
-  if (n > length(pal)){ grDevices::colorRampPalette(pal, ...)
+  if (n > pal_len(palette)){ grDevices::colorRampPalette(pal, ...)
   } else { unname(pal) }
 
 
