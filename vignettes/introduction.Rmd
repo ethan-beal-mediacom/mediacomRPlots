@@ -1,8 +1,9 @@
 ---
-title: "introduction"
+title: "mediacomRPlots Manual"
 output: rmarkdown::html_vignette
+number_sections: true
 vignette: >
-  %\VignetteIndexEntry{introduction}
+  %\VignetteIndexEntry{mediacomRPlots Manual}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,6 +15,23 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+
 ```{r setup}
 library(mediacomRPlots)
 ```
+
+The aim of this package is to hopefully make it quick and easy to make nice looking graphs in a Mediacom style.
+
+#  installing 
+
+#  Colours and Palettes
+
+##  quick view 
+You can use `veiw_palettte` to have a look at the palettes and colours available with this package. 
+
+```{r echo = TRUE}
+
+veiw_palette()
+```
+
