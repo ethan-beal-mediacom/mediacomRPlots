@@ -16,3 +16,5 @@ VignetteBuilder: knitr
 Imports: 
     grDevices,
     ggplot2
+URL: https://github.com/ethan-beal-mediacom/mediacomRPlots
+BugReports: https://github.com/ethan-beal-mediacom/mediacomRPlots/issues
